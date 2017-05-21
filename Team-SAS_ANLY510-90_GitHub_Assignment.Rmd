@@ -1,0 +1,169 @@
+---
+title: 'ANLY 510-90: Team GitHub Assignment'
+author:
+- Team SAS
+- Sweta Yadav, Abhishek Chowdhary, Sathya Narayanan Subbaraj
+- Harrisburg University
+output:
+  html_document: default
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE, warning = FALSE)
+
+```
+<br>
+
+## Data Cleanup
+<br>
+<br>
+
+**Load Libraries **
+
+```{r}
+
+# Load required packages
+library(stringr)
+library(stringi)
+library(zoo)
+
+```
+<br>
+<br>
+
+
+### Step-1)
+<br>
+**Coding done by: SWETA YADAV **
+<br>
+<br>
+
+In step-1, the following actions were performed in R for data cleanup;
+<br>
+<br>
+a) The dataset 'dirty_data.csv' was loaded into R.
+<br>
+b) The Area column with NA were populated by replacing with previous not NULL value.
+<br>
+c) The special characters were removed using 'gsub' function in R.
+<br>
+d) The variables 'Street' and 'Street.2' were trimmed for spaces at both ends and multiple spaces were replaced with single space.
+<br>
+
+```{r}
+
+# Load dataset and set empty values to NA
+dirty_data <- read.csv("dirty_data.csv", header = T, na.strings = c("","NA"))
+
+# dirty_data column names
+colnames(dirty_data)
+
+# Populate the Area column by replacing NA with previous not NULL value
+clean_data <- transform(dirty_data, Area = na.locf(Area))
+
+# Remove special characters from column 'Street' and 'Street.2'
+clean_data$Street <- gsub(pattern = "[^[:blank:][:alnum:]+.,&/\\-]", replacement = " ", clean_data$Street)
+clean_data$Street.2 <- gsub(pattern = "[^[:blank:][:alnum:]+.,&/\\-]", replacement = " ", clean_data$Street.2)
+
+# Trim leading and ending spaces, replace multiple spaces with single space
+clean_data$Street <- gsub("\\s+", " ", str_trim(clean_data$Street))
+clean_data$Street.2 <- gsub("\\s+", " ", str_trim(clean_data$Street.2))
+
+
+
+
+```
+<br>
+<br>
+
+
+### Step-2)
+<br>
+**Coding done by: SATHYA NARAYANAN SUBBARAJ **
+<br>
+<br>
+
+In step-2, the following actions were performed in R for data cleanup;
+<br>
+<br>
+a) The street text values in 'Street' and 'Street.2' were capitalized using Title case.
+<br>
+b) The street address denominations for Street, Avenue, Roads, Lane were standaridized using str_replace_all function.
+<br>
+e) Few other corrections to the 'Street' and 'Street.2' values were made.
+
+<br>
+```{r}
+
+# Capitalization of the first letters of text values in 'Street' and 'Street.2'
+clean_data$Street <- str_to_title(clean_data$Street)
+clean_data$Street.2 <- str_to_title(clean_data$Street.2)
+
+# Convert Street to St
+clean_data$Street <- str_replace_all(clean_data$Street,"Street", "St")
+clean_data$Street.2 <- str_replace_all(clean_data$Street.2,"Street", "St")
+
+# Convert Road to Rd
+clean_data$Street <- str_replace_all(clean_data$Street,"Road", "Rd")
+clean_data$Street.2 <- str_replace_all(clean_data$Street.2,"Road", "Rd")
+
+# Convert Roads to Rd
+clean_data$Street <- str_replace_all(clean_data$Street,"Roads", "Rd")
+clean_data$Street.2 <- str_replace_all(clean_data$Street.2,"Roads", "Rd")
+
+# Convert Raod to Rd
+clean_data$Street <- str_replace_all(clean_data$Street,"Raod", "Rd")
+clean_data$Street.2 <- str_replace_all(clean_data$Street.2,"Raod", "Rd")
+
+# Convert Lane to Ln
+clean_data$Street <- str_replace_all(clean_data$Street,"Lane", "Ln")
+clean_data$Street.2 <- str_replace_all(clean_data$Street.2,"Lane", "Ln")
+
+# Convert Avenue to Ave
+clean_data$Street <- str_replace_all(clean_data$Street,"Avenue", "Ave")
+clean_data$Street.2 <- str_replace_all(clean_data$Street.2,"Avenue", "Ave")
+
+
+# Other Corrections
+clean_data$Street <- gsub(pattern = " ,", replacement = ",", clean_data$Street)
+clean_data$Street.2 <- gsub(pattern = " ,", replacement = ",", clean_data$Street.2)
+
+clean_data$Street <- gsub(pattern = ",  ", replacement = ", ", clean_data$Street)
+clean_data$Street.2 <- gsub(pattern = ",  ", replacement = ", ", clean_data$Street.2)
+
+```
+<br>
+<br>
+
+### Step-3)
+<br>
+**Coding done by: ABHISHEK CHOWDHARY **
+<br>
+<br>
+
+In step-3, the following actions were performed in R for data cleanup;
+<br>
+<br>
+a) If the value in Street 2 duplicates the value in Street 1, the Street.2 value was removed using ifelse() function in R.
+<br>
+b) The Strange.HTML column was removed using subset function.
+<br>
+c) The final Cleaned up dataset was then exported.
+<br>
+
+```{r}
+
+# If the value in Street 2 duplicates the value in Street 1, remove the value in Street 2
+clean_data$Street.2 <- ifelse(clean_data$Street.2==clean_data$Street,"",clean_data$Street.2)
+
+# Remove 'Strange.HTML' column by subsetting
+final_data <- subset(clean_data, select = -Strange.HTML)
+
+# Export the cleaned output
+write.csv(final_data, file = "final_data.csv", row.names = FALSE, na = "")
+
+```
+<br>
+<br>
+
