@@ -24,7 +24,8 @@ library(stringi)
 library(zoo)
 
 ```
-### Step-1) Coding done by: SWETA YADAV
+#### Step-1) 
+**Coding done by: SWETA YADAV**
 
 In step-1, the following actions were performed in R for data cleanup;
 
