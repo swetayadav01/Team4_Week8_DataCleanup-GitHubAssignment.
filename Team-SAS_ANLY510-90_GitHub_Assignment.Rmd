@@ -60,20 +60,16 @@ clean_data$Street.2 <- gsub("\\s+", " ", str_trim(clean_data$Street.2))
 
 
 ### Step-2) Coding done by: SATHYA NARAYANAN SUBBARAJ
-<br>
-<br>
 
 In step-2, the following actions were performed in R for data cleanup;
-<br>
-<br>
-a) The street text values in 'Street' and 'Street.2' were capitalized using Title case.
-<br>
-b) The street address denominations for Street, Avenue, Roads, Lane were standaridized using str_replace_all function.
-<br>
-e) Few other corrections to the 'Street' and 'Street.2' values were made.
 
-<br>
-```{r}
+a) The street text values in 'Street' and 'Street.2' were capitalized using Title case.
+
+b) The street address denominations for Street, Avenue, Roads, Lane were standaridized using str_replace_all function.
+
+c) Few other corrections to the 'Street' and 'Street.2' values were made.
+
+```{r }
 
 # Capitalization of the first letters of text values in 'Street' and 'Street.2'
 clean_data$Street <- str_to_title(clean_data$Street)
@@ -116,24 +112,16 @@ clean_data$Street <- gsub(pattern = ",  ", replacement = ", ", clean_data$Street
 clean_data$Street.2 <- gsub(pattern = ",  ", replacement = ", ", clean_data$Street.2)
 
 ```
-<br>
-<br>
 
-### Step-3)
-<br>
-####Coding done by: ABHISHEK CHOWDHARY
-<br>
-<br>
+### Step-3) Coding done by: ABHISHEK CHOWDHARY
 
 In step-3, the following actions were performed in R for data cleanup;
-<br>
-<br>
+
 a) If the value in Street 2 duplicates the value in Street 1, the Street.2 value was removed using ifelse() function in R.
-<br>
+
 b) The Strange.HTML column was removed using subset function.
-<br>
+
 c) The final Cleaned up dataset was then exported.
-<br>
 
 ```{r}
 
@@ -147,6 +135,3 @@ final_data <- subset(clean_data, select = -Strange.HTML)
 write.csv(final_data, file = "final_data.csv", row.names = FALSE, na = "")
 
 ```
-<br>
-<br>
-
