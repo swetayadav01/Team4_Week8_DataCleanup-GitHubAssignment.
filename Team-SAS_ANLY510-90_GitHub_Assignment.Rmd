@@ -24,8 +24,8 @@ library(stringi)
 library(zoo)
 
 ```
-#### Coding done by: SWETA YADAV
-##### Step-1) 
+### Coding done by: SWETA YADAV
+#### Step-1) 
 In step-1, the following actions were performed in R for data cleanup;
 
 
@@ -59,8 +59,8 @@ clean_data$Street.2 <- gsub("\\s+", " ", str_trim(clean_data$Street.2))
 ```
 
 
-### Step-2) Coding done by: SATHYA NARAYANAN SUBBARAJ
-
+### Coding done by: SATHYA NARAYANAN SUBBARAJ
+#### Step-2)
 In step-2, the following actions were performed in R for data cleanup;
 
 a) The street text values in 'Street' and 'Street.2' were capitalized using Title case.
@@ -113,8 +113,8 @@ clean_data$Street.2 <- gsub(pattern = ",  ", replacement = ", ", clean_data$Stre
 
 ```
 
-### Step-3) Coding done by: ABHISHEK CHOWDHARY
-
+### Coding done by: ABHISHEK CHOWDHARY
+#### Step-3) 
 In step-3, the following actions were performed in R for data cleanup;
 
 a) If the value in Street 2 duplicates the value in Street 1, the Street.2 value was removed using ifelse() function in R.
