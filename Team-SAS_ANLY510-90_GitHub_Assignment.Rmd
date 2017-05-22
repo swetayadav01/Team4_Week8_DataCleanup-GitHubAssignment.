@@ -13,13 +13,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE, warning = FALSE)
 
 ```
-<br>
 
 ## Data Cleanup
-<br>
-<br>
-
-###Load Libraries
 
 ```{r}
 
@@ -29,27 +24,18 @@ library(stringi)
 library(zoo)
 
 ```
-<br>
-<br>
-
-
-### Step-1)
-<br>
-####Coding done by: SWETA YADAV
-<br>
-<br>
+### Step-1) Coding done by: SWETA YADAV
 
 In step-1, the following actions were performed in R for data cleanup;
-<br>
-<br>
+
+
 a) The dataset 'dirty_data.csv' was loaded into R.
-<br>
+
 b) The Area column with NA were populated by replacing with previous not NULL value.
-<br>
+
 c) The special characters were removed using 'gsub' function in R.
-<br>
+
 d) The variables 'Street' and 'Street.2' were trimmed for spaces at both ends and multiple spaces were replaced with single space.
-<br>
 
 ```{r}
 
@@ -70,17 +56,10 @@ clean_data$Street.2 <- gsub(pattern = "[^[:blank:][:alnum:]+,&/\\-]", replacemen
 clean_data$Street <- gsub("\\s+", " ", str_trim(clean_data$Street))
 clean_data$Street.2 <- gsub("\\s+", " ", str_trim(clean_data$Street.2))
 
-
-
-
 ```
-<br>
-<br>
 
 
-### Step-2)
-<br>
-####Coding done by: SATHYA NARAYANAN SUBBARAJ
+### Step-2) Coding done by: SATHYA NARAYANAN SUBBARAJ
 <br>
 <br>
 
