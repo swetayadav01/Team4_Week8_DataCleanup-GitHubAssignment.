@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE, war
 <br>
 <br>
 
-**Load Libraries **
+###Load Libraries
 
 ```{r}
 
@@ -35,7 +35,7 @@ library(zoo)
 
 ### Step-1)
 <br>
-**Coding done by: SWETA YADAV **
+####Coding done by: SWETA YADAV
 <br>
 <br>
 
@@ -80,7 +80,7 @@ clean_data$Street.2 <- gsub("\\s+", " ", str_trim(clean_data$Street.2))
 
 ### Step-2)
 <br>
-**Coding done by: SATHYA NARAYANAN SUBBARAJ **
+####Coding done by: SATHYA NARAYANAN SUBBARAJ
 <br>
 <br>
 
@@ -142,7 +142,7 @@ clean_data$Street.2 <- gsub(pattern = ",  ", replacement = ", ", clean_data$Stre
 
 ### Step-3)
 <br>
-**Coding done by: ABHISHEK CHOWDHARY **
+####Coding done by: ABHISHEK CHOWDHARY
 <br>
 <br>
 
